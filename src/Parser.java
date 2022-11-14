@@ -27,6 +27,8 @@ public class Parser {
                 performCalculation("div");
             }else if(tokens[i].get(0).value.equals("pow")){
                 performCalculation("pow");
+            }else if(tokens[i].get(0).value.equals("mod")){
+                performCalculation("mod");
             }else if(tokens[i].get(0).value.equals("out")){
                 System.out.println(digits.get(tokens[i].get(1).value));
             }else if(tokens[i].get(0).value.equals("if")){
@@ -34,6 +36,7 @@ public class Parser {
             }else if(tokens[i].get(0).value.equals("while")){
                 if(!checkIfOrWhileVal()){
                     traverseToEndOfWhile();
+                    continue;
                 }
             }else if(tokens[i].get(0).value.equals("stopW")){
                 reverseToWhile();
@@ -78,6 +81,7 @@ public class Parser {
             }
             i ++;
         }
+        i++;
     }
 
     private void interpretIf() {
@@ -147,6 +151,7 @@ public class Parser {
             case "mul" : digits.put(tokens[i].get(2).value, b * a); break;
             case "div" : digits.put(tokens[i].get(2).value, b / a); break;
             case "pow" : digits.put(tokens[i].get(2).value, (int)Math.pow(a,b)); break;
+            case "mod": digits.put(tokens[i].get(2).value, b % a);break;
         }
     }
 }
